@@ -1,0 +1,32 @@
+server:
+  port: 9098 #default port where the service will be started
+
+eureka: #tells about the Eureka server details and its refresh time
+  instance:
+    leaseRenewalIntervalInSeconds: 1
+    leaseExpirationDurationInSeconds: 2
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+    instance:
+      preferIpAddress: true
+    healthcheck:
+      enabled: true
+    lease:
+      duration: 5
+
+spring:
+  application:
+    name: ewallet-service #current service name to be used by the eureka server
+  datasource:
+    url: jdbc:mysql://localhost:3306/ewallet
+    username: root
+    password: qwertyuiop
+
+management:
+  security:
+    enabled: false #disable the spring security on the management endpoints like /env, /refresh etc.
+
+logging:
+  file:
+    name: /Users/naveenluhach/Downloads/logs/ewalletservice.log
